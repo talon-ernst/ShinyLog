@@ -1,0 +1,38 @@
+name: Format Check
+
+on: [pull_request]
+
+jobs:
+  format-check
+   runs-on: windows-latest
+
+   strategy:
+   matrix:
+     dotnet-version: ['9.0.x']
+
+   steps:
+      -name Checkout repository
+       uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build WPF project
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Check Code Formatting
+        run: |
+          $projects = Get-ChildItem -Path . -Recurse -Filter *.csproj
+          foreach ($proj in $projects) {
+            Write-Output "Verifying format for project: $($proj.FullName)"
+            dotnet format $proj.FullName --verify-no-changes
+            if ($LASTEXITCODE -ne 0) {
+              Write-Error "Code formatting check failed for project $($proj.FullName)"
+              exit $LASTEXITCODE
+            }
+          }
