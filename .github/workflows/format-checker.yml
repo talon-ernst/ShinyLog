@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore ShinyLog/ShinyLog.sln
 
       - name: Build WPF project
-        run: dotnet build ShinyLog/ShinyLog.sln --no-restore --configuration Release
+        run: dotnet build ShinyLog/ShinyLog.sln --no-restore --configuration Release -warnaserror
 
       - name: Check Code Formatting
         run: |
