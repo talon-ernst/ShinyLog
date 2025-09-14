@@ -20,7 +20,7 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ShinyLog/ShinyLog.sln
 
       - name: Build WPF project
         run: dotnet build ShinyLog/ShinyLog.sln --no-restore --configuration Release
