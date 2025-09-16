@@ -20,5 +20,20 @@ namespace ShinyLog
         {
             InitializeComponent();
         }
+
+        private void startHuntButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addHuntButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void settingsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
