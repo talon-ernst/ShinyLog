@@ -11,7 +11,7 @@ namespace ShinyLog
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            BuildDatabase.Instance.CreateDatabase();
+            DatabaseManager.Instance.CreateDatabase();
             Application.Run(new ShinyLog());
         }
     }
